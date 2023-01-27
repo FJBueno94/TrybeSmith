@@ -9,6 +9,16 @@ class UserController {
     const token = await this.usersService.create(user);
     return res.status(201).json({ token });
   };
+
+  public login = async (req: Request, res: Response) => {
+    try {
+      const credentials = req.body;
+      const token = await this.usersService.login(credentials);
+      return res.status(200).json({ token });
+    } catch (error: any) {
+      return res.status(401).json({ message: error.message });
+    }
+  };
 }
 
 export default UserController;

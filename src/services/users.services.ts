@@ -15,6 +15,15 @@ class UsersService {
     const token = Token.createToken(result);
     return token;
   };
+
+  public login = async (credentials: User): Promise<string> => {
+    const result = await this.model.login(credentials);
+    if (!result) {
+      throw new Error('Invalid username or password');
+    }
+    const token = Token.createToken(result);
+    return token;
+  };
 }
 
 export default UsersService;
